@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/all', (req, res) => {
-  fetch('http://127.0.0.1/words')
+  fetch('https://crudapi-fd.herokuapp.com/words')
     .then(res => res.json())
     .then(json => {
       res.render('all', { data : json.data.words })
@@ -36,7 +36,7 @@ app.get('/add', (req, res) => {
 app.post('/adding', (req, res) => {
   var word = req.body.wordText;
   if(word) {
-    fetch('http://127.0.0.1/words/add', {
+    fetch('https://crudapi-fd.herokuapp.com/words/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ app.post('/adding', (req, res) => {
 app.get('/update', (req, res) => {
   var id = req.query.id;
   if(id) {
-    fetch(`http://127.0.0.1/words/${id}`)
+    fetch(`https://crudapi-fd.herokuapp.com/words/${id}`)
     .then(res => res.json())
     .then(json => {
       res.render('update', { data : json.data.word })
@@ -79,7 +79,7 @@ app.post('/updating', (req, res) => {
   var word = req.body.wordText;
   var id = req.body.id;
   if(word) {
-    fetch(`http://127.0.0.1/words/update/${id}`, {
+    fetch(`https://crudapi-fd.herokuapp.com/words/update/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -109,7 +109,7 @@ app.post('/updating', (req, res) => {
 app.get('/delete', (req, res) => {
   var id = req.query.id;
   if(id) {
-    fetch(`http://127.0.0.1/words/${id}`)
+    fetch(`https://crudapi-fd.herokuapp.com/words/${id}`)
     .then(res => res.json())
     .then(json => {
       res.render('delete', { data : json.data.word })
@@ -123,7 +123,7 @@ app.post('/deleting', (req, res) => {
   var word = req.body.wordText;
   var id = req.body.id;
   if(word) {
-    fetch(`http://127.0.0.1/words/delete/${id}`, {
+    fetch(`https://crudapi-fd.herokuapp.com/words/delete/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
