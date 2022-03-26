@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <title>Text CRUD App</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/examples/cover/cover.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h4 class="masthead-brand" style="color:#5fe6da; float: inherit;">Words</h4>
+        </div>
+      </header>
+      <main role="main" class="inner cover">
+        <h3>Add a new word</h3>
+      </main>
+      <main role="main" class="inner cover d-none d-sm-block">
+          <form id="addform" style="width: 100%;" method="POST" action="/adding" enctype="application/x-www-form-urlencoded">
+                <div class="form-group mx-sm-4 mb-4">
+                  <input name="wordText" type="text" class="form-control" id="word" placeholder="a word" required/>
+                </div>
+                <div class="form-group mx-sm-4 mb-4">
+                  <input type="submit" class="btn btn-primary" value="Create" id="meetSubmit" style="width: 100px">
+                </div>
+          </form>
+      </main>
+      <footer class="mastfoot mt-auto">
+      <div class="inner">
+          <a href="/">Home</a>
+          <a href="/all">All</a>
+          <a href="/add">Add</a>
+          <p>Made with <i class="icon ion-heart" style="color: #e25555;"></i> By
+        <a style="text-decoration:none; font-family: Cochin;" href="mailto:gdeepak884@gmail.com" target="_blank">Deepak Gupta</a>
+      </p>
+      </div>
+      </footer>
+    </div>
+    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

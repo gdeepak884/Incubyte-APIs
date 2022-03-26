@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <title>Text CRUD App</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/examples/cover/cover.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h4 class="masthead-brand" style="color:#5fe6da; float: inherit;">Words</h4>
+        </div>
+      </header>
+      
+      <main role="main" class="inner cover">
+        <h3>All Words</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Word</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(words in data) {%>
+            <tr>
+              <td><%= data[words].word %></td>
+              <td>
+                <a href="/update/?id=<%= data[words]._id%>" title="Update"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAAuklEQVRIie3VoQrCQAAG4A+x+xJisxnMghisRl9iyahN38Jq8Wl8AItVMVk16GAOhxN2N4T9cOF2cN/9HOxo8udJcMEBg1joCvfMuGIYG83ib81boU/ySgfb0EhR63MIaFUCT6pG0403ubVFZm0ZCk3Hp+b5b5WjRc2joMHwMmiUO23QBv05E8/39Bta6c8hzbwOFMZ1oNCLifZzG3cxwgy3UCisFbeahkLhKNI9tnPz0wvdYR8SbhItDwJbnBVPxJOqAAAAAElFTkSuQmCC"/></a>
+                <a href="/delete/?id=<%= data[words]._id%>" title="Delete"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAAtElEQVRIie2VQQ6CQAxFX8R7uPM4xsPgCTmFSzW6niUGBTezMnawLTIQecks+1+bzgD8G4Wjdg9sgeNAvXzNHah/Fb6L4Z3y1LFWTWWQSaf6JFhZulLSjeCYOQH/foMUntrx2d87p1xiMWOS4ssAYjFjkhNnE4s3UoEpowAa7G+4AdZSeGriJ3CzdBy5Ag+LGHx7TtYu4nc8H5FkbbaJ+9gALfqn1MZaFwd0/+YAlF7pwvx5Abo6e/T2cOSLAAAAAElFTkSuQmCC"/></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </main>
+      <footer class="mastfoot mt-auto">
+      <div class="inner">
+          <a href="/">Home</a>
+          <a href="/all">All</a>
+          <a href="/add">Add</a>
+          <p>Made with <i class="icon ion-heart" style="color: #e25555;"></i> By
+        <a style="text-decoration:none; font-family: Cochin;" href="mailto:gdeepak884@gmail.com" target="_blank">Deepak Gupta</a>
+      </p>
+      </div>
+      </footer>
+    </div>
+    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

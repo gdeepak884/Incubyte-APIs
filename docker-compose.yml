@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+ apis:
+  build:
+   context: .
+  restart: always
+  ports:
+   - 80:80
+  environment:
+   - CONNECTIONSTRING=mongodb+srv://gdeepaks:0iwqp9efzrHbDcLM@cluster0.xgoow.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+  volumes:
+   - ./:/app
+  command: npm run prod
