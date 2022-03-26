@@ -24,7 +24,8 @@
       <main role="main" class="inner cover d-none d-sm-block">
           <form id="addform" style="width: 100%;" method="POST" action="/updating" enctype="application/x-www-form-urlencoded">
                 <div class="form-group mx-sm-4 mb-4">
-                  <input name="wordText" type="text" class="form-control" id="word" value="" placeholder="a word" required/>
+                  <input name="wordText" type="text" class="form-control" id="word" value="<%= data.word %>" placeholder="a word" required/>
+                  <input name="id" type="hidden" value="<%= data._id %>"/>
                 </div>
                 <div class="form-group mx-sm-4 mb-4">
                   <input type="submit" class="btn btn-primary" value="Update" id="meetSubmit" style="width: 100px">

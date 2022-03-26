@@ -17,7 +17,23 @@ router.get("/", async (req, res) => {
     }
 });
 
-
+// A Word
+router.get("/:id", async (req, res) => {
+    try {
+        const word = await Words.findById(req.params.id);
+        if (!word) {
+            return res.status(404).json({ message: "Word not found" });
+        }
+        res.status(200).json({
+            message: "Word",
+            data: {
+                word
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 // Add a Word
 router.post("/add",
@@ -66,6 +82,10 @@ async (req, res) => {
     const { word } = req.body;
     const { id } = req.params;
     try {
+        const wordFound = await Words.findById(req.params.id);
+        if (!wordFound) {
+            return res.status(404).json({ message: "Word not found" });
+        }
         let wordExists = await Words.findOne({ word });
         if (wordExists) {
             return res.status(400).json({
@@ -98,6 +118,10 @@ async (req, res) => {
     }
     const { id } = req.params;
     try {
+        const wordFound = await Words.findById(req.params.id);
+        if (!wordFound) {
+            return res.status(404).json({ message: "Word not found" });
+        }
         const deletedWord = await Words.findByIdAndDelete(id);
         res.status(200).json({
             success: true,

@@ -20,23 +20,17 @@ app.get('/', (req, res) => {
 	res.render('index')
 });
 
-app.get('/add', (req, res) => {
-  var message = req.query.message;
-  if(message){
-    res.render('add', {message});
-  } else {
-    res.render('add');
-  }
-});
-
 app.get('/all', (req, res) => {
   fetch('http://127.0.0.1/words')
     .then(res => res.json())
     .then(json => {
       res.render('all', { data : json.data.words })
-      // console.log(data.data.words[0].word);
     })
     .catch(err => console.log(err))
+});
+
+app.get('/add', (req, res) => {
+  res.render('add');
 });
 
 app.post('/adding', (req, res) => {
@@ -53,9 +47,8 @@ app.post('/adding', (req, res) => {
     })
     .then(res => res.json())
 		.then(data => {
-      console.log(data);
 			if(data.success==true) {
-				res.redirect('/add?message=Word added successfully');
+				res.redirect('/all?message=Word added successfully');
 			}
 			else {
 				    res.status(200).redirect(`/add?message=${data.message}`)
@@ -72,13 +65,87 @@ app.post('/adding', (req, res) => {
 
 app.get('/update', (req, res) => {
   var id = req.query.id;
-  res.render('update')
+  if(id) {
+    fetch(`http://127.0.0.1/words/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      res.render('update', { data : json.data.word })
+    })
+    .catch(err => console.log(err))
+  }
+});
+
+app.post('/updating', (req, res) => {
+  var word = req.body.wordText;
+  var id = req.body.id;
+  if(word) {
+    fetch(`http://127.0.0.1/words/update/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        word: word
+      })
+    })
+    .then(res => res.json())
+		.then(data => {
+			if(data.success==true) {
+				res.redirect('/all?message=Word updated successfully');
+			}
+			else {
+				    res.status(200).redirect(`/update?id=${id}&message=${data.message}`)
+			}
+		}
+			).catch(function(err) {
+			 console.log(err);}
+	    );
+	}
+	else {
+			res.status(200).redirect(`/update?id=${id}&message=Something went wrong`)	
+	}
 });
 
 app.get('/delete', (req, res) => {
-  res.render('delete')
+  var id = req.query.id;
+  if(id) {
+    fetch(`http://127.0.0.1/words/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      res.render('delete', { data : json.data.word })
+    })
+    .catch(err => console.log(err))
+  }
 });
 
+
+app.post('/deleting', (req, res) => {
+  var word = req.body.wordText;
+  var id = req.body.id;
+  if(word) {
+    fetch(`http://127.0.0.1/words/delete/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+		.then(data => {
+			if(data.success==true) {
+				res.redirect('/all?message=Word deleted successfully');
+			}
+			else {
+				    res.status(200).redirect(`/all?id=${id}&message=${data.message}`)
+			}
+		}
+			).catch(function(err) {
+			 console.log(err);}
+	    );
+	}
+	else {
+			res.status(200).redirect(`/all?id=${id}&message=Something went wrong`)	
+	}
+});
 
 var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
 var server_host = process.env.YOUR_HrsOST || '0.0.0.0';
