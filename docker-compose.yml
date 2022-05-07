@@ -7,8 +7,6 @@ services:
   restart: always
   ports:
    - 80:80
-  environment:
-   - CONNECTIONSTRING=mongodb+srv://gdeepaks:KO5RrvPRfjKCSmYK@cluster0.xgoow.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
   volumes:
    - ./:/app
   command: npm run prod
